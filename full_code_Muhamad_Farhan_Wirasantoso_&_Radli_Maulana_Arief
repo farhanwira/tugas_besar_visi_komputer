@@ -1,0 +1,30 @@
+#LIBRARY
+
+!pip install tensorflow
+
+import matplotlib.pyplot as plt
+import numpy as np
+import tensorflow as tf
+from skimage.feature import hog
+from sklearn import datasets
+from mlxtend.data import loadlocal_mnist
+from sklearn.neural_network import MLPClassifier
+from tensorflow.keras.preprocessing.image import ImageDataGenerator
+from sklearn.metrics import classification_report
+from sklearn.model_selection import train_test_split
+from tensorflow.keras.callbacks import ModelCheckpoint
+import os
+
+from google.colab import files
+files.upload()
+
+!mkdir ~/.kaggle
+!cp kaggle.json ~/.kaggle/
+!chmod 600 ~/.kaggle/kaggle.json
+!kaggle datasets download -d niteshfre/chessman-image-dataset
+!unzip chessman-image-dataset.zip
+
+dirname = 'Chessman-image-dataset/Chess'
+dir_chess_folders = os.listdir(dirname)
+dir_chess_paths = [os.path.join(dirname, path) for path in dir_chess_folders]
+print(dir_chess_paths)
